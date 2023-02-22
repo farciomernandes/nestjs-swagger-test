@@ -16,6 +16,6 @@ export const baseSchema = {
   } as EntitySchemaColumnOptions,
   deletedAt: {
     type: 'timestamp',
-    nullable: true,
-  },
+    default: new Date(),
+  } as EntitySchemaColumnOptions,
 };

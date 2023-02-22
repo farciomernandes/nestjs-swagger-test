@@ -1,10 +1,11 @@
-import { User } from 'src/core/domain/entities/user.entity';
-import { baseSchema } from 'src/infra/db/type-orm/schemas/base/base.schema';
+import { User } from '../../../../core/domain/entities/user.entity';
+import { baseSchema } from '../../../../infra/db/type-orm/schemas/base/base.schema';
 import { EntitySchema } from 'typeorm/entity-schema/EntitySchema'; //Vem da lib
 
 export const UserSchema = new EntitySchema<User>({
-  schema: 'public',
+  schema: 'users',
   name: User.name,
+  target: User,
   tableName: 'users',
   columns: {
     ...baseSchema,
@@ -14,12 +15,13 @@ export const UserSchema = new EntitySchema<User>({
     },
     email: {
       type: 'varchar',
-      unique: true,
       nullable: false,
+      unique: true,
     },
     password: {
       type: 'varchar',
       nullable: false,
     },
   },
+  relations: {},
 });
