@@ -5,17 +5,16 @@ import { Repository } from 'typeorm';
 
 export class UserTypeOrmRepository implements UserRepository {
   constructor(private readonly userRepository: Repository<User>) {}
-
-  findByEmail(email: string, relations?: string[]): Promise<User> {
-    return this.userRepository.findOne({
-      where: { email },
-      relations,
-    });
-  }
-
   findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
+
+  // findByEmail(email: string, relations?: string[]): Promise<User> {
+  //   return this.userRepository.findOne({
+  //     where: { email },
+  //     relations,
+  //   });
+  // }
 
   save(userData: User): Promise<User> {
     const user = this.userRepository.create(userData);

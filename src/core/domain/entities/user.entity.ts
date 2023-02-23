@@ -5,7 +5,8 @@ export class User extends BaseEntity {
   public email: string;
   public password: string;
 
-  constructor(user?: Partial<User>) {
+ /**
+  *  constructor(user?: Partial<User>) {
     super();
     this.name = user.name;
     this.email = user.email;
@@ -15,4 +16,5 @@ export class User extends BaseEntity {
     this.updatedAt = user.updatedAt;
     this.deletedAt = user.deletedAt;
   }
+  */
 }

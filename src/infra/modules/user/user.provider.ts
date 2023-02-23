@@ -1,6 +1,7 @@
 import { Provider } from '@nestjs/common';
 import { getDataSourceToken } from '@nestjs/typeorm';
 import { CreateUserUseCase } from 'src/core/application/user/create-user-use.case';
+import { FindAllUserUseCase } from 'src/core/application/user/find-all-user-use.case';
 import { User } from 'src/core/domain/entities/user.entity';
 import { CreateUserMapper } from 'src/core/domain/mappers/user/create-user-mapper';
 import { UserRepository } from 'src/core/domain/repositories/user.repository';
@@ -28,6 +29,13 @@ export const userProvider: Provider[] = [
       return new CreateUserUseCase(createUserMapper, userRepository);
     },
     inject: [CreateUserMapper, UserTypeOrmRepository],
+  },
+  {
+    provide: FindAllUserUseCase,
+    useFactory: (userRepository: UserRepository): FindAllUserUseCase => {
+      return new FindAllUserUseCase(userRepository);
+    },
+    inject: [UserTypeOrmRepository],
   },
   // {
   //   provide: CreateUserUseCase,
